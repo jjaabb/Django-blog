@@ -1,26 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-#creating dummy data
-
-posts = [{'author': 'Algirdas',
-'title' : 'Blog Post 1',
-'content': 'First post content',
-'date_posted':'December 8, 2019'
-},
-{'author': 'Ernesta',
-'title' : 'Blog Post 2',
-'content': 'Second post content',
-'date_posted':'December 9, 2019'
-}]
-
-
+#from django.http import HttpResponse
+from .models import Post
 
 #Creating function
 
 def home(request):
     '''This function going to handle traffic from the home page of our 
     blog'''
-    context = {'posts':posts}
+    context = {'posts': Post.objects.all()}
     return render(request, 'blog/home.html', context)
 
 
